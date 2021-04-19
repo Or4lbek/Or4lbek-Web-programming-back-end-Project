@@ -1,62 +1,47 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Almaty Credo
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+My project is a website for outdoor advertising products.
 
-## About Laravel
+## Description
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+In this project I used the php Laravel framework.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+My project provides the basic concept of Outdoor advertising and you can find out the services and types of outdoor advertising on my website
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+I created a project so that it would be convenient for customers to get acquainted with the types of outdoor advertising and leave a request for advice and the opportunity to get an answer to their question.
 
-## Learning Laravel
+## Features
+As I said earlier my project has a form for leaving a message, when you submit your question you can attach a picture
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![form1](https://user-images.githubusercontent.com/72996538/115163836-0d24b900-a0b4-11eb-80f9-849810089fae.PNG)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+One of the functions of my project is to leave requests and your data will come to me by email so that we can then contact you.
 
-## Laravel Sponsors
+![send2](https://user-images.githubusercontent.com/72996538/115164805-211cea80-a0b5-11eb-9206-eb14c8d1f69a.jpg)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+![send1](https://user-images.githubusercontent.com/72996538/115164820-21b58100-a0b5-11eb-8b0d-a2f0ccd045ea.jpg)
 
-### Premium Partners
+## Database
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+For this project, i use MySQL database.
 
-## Contributing
+Database consists of two tables with relation one to many:
+Two tables connected with foreign key customer_id, because one customer asks many questions.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+to receive messages:
 
-## Code of Conduct
+![table](https://user-images.githubusercontent.com/72996538/115163678-237e4500-a0b3-11eb-854d-92c7de72ca5a.PNG)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+And to receive requests:
 
-## Security Vulnerabilities
+![table2](https://user-images.githubusercontent.com/72996538/115163679-24af7200-a0b3-11eb-8610-81e8e8d7645a.PNG)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Localization
 
-## License
+My project, supports two languages(Russian, English)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![localization](https://user-images.githubusercontent.com/72996538/115165922-0f3d4680-a0b9-11eb-972c-c0445bb4116a.PNG)
+
+
+## License & copyright
+© Sapar Oralbek, Suleyman Demirel University
