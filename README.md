@@ -44,7 +44,7 @@ And to receive requests:
 
 My project, supports two languages(Russian, English)
 
-![localization](https://user-images.githubusercontent.com/72996538/115165922-0f3d4680-a0b9-11eb-972c-c0445bb4116a.PNG)
+![localization_mp4](https://user-images.githubusercontent.com/72996538/115212893-a92cdf80-a109-11eb-9677-33b0fa956c4b.gif)
 
 
 ## License & copyright
