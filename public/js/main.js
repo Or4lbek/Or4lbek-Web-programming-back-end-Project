@@ -81,13 +81,15 @@ var x=1;
 function displayFn(){
     if (x==1){
         document.getElementById("second_gallery").style.display="flex";
-        document.getElementById("Btn").innerHTML="Скрыть галерею";
+        document.getElementById("Btn").innerHTML="&#8593;";
         return x=0;
     }
     else{
         document.getElementById("second_gallery").style.display="none";
-        document.getElementById("Btn").innerHTML="Показать галерею";
+        document.getElementById("Btn").innerHTML="&#8595;";
         return x=1;
+        
+        
     }
 }
 

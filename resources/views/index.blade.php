@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <title>
             Almaty Credo
         </title>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
@@ -11,6 +14,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <link rel="stylesheet" type="text/css" href="lightbox.min.css">
         <script src="lightbox-plus-jquery.min.js"></script>
 
@@ -18,9 +24,18 @@
         <link rel="stylesheet" href="fontawesome-free/css/all.min.css">
 
         <link rel="icon" href="log.ico">
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
-    <body onload = "load()">
+    <body data-spy="scroll" data-target=".navbar" onload = "load()">
         <div class="page">
         <div id="credo1" class="header">
                 <div class = "container1">
@@ -30,15 +45,46 @@
                     <input type="checkbox" name="" id="toggle">
                     <div class="header_innner">
                         <div class="nav">
-                            <div><a class= "nav_link" href="#">Home</a></div>
-                            <div><a class= "nav_link" href="#about_us">Company</a></div>
-                            <div><a class= "nav_link" href="#Services">Services</a></div>
-                            <div><a class= "nav_link" href="#cont">Contacts</a></div>
+                            <div><a class= "nav_link" href="#">{{__('index.header_1')}}</a></div>
+                            <div><a class= "nav_link" href="#about_us">{{__('index.header_2')}}</a></div>
+                            <div><a class= "nav_link" href="#Services">{{__('index.header_3')}}</a></div>
+                            <div><a class= "nav_link" href="#cont">{{__('index.header_4')}}</a></div>
                         </div>
+                        
                         <div class="header_logo"  onclick="window.location.reload()">
                             <img id="img1" src="images/Credo 22 png.png", height="70px">
                             
                         </div>
+                        @php $locale = session()->get('locale'); @endphp
+					<li class="nav-item dropdown">
+						 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                     @switch($locale)
+                        @case('en')
+                                <img src="{{asset('images/us.png')}}"> {{__('English') }}
+                               @break
+                          @case('ru')
+                                <img  src="{{asset('images/ru.png')}}"> {{__('Russian') }}
+                                @break
+                         @default
+                                <img src="{{asset('images/us.png')}}"> English
+                            @endswitch
+
+						<span class="caret"></span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/en"><img src="{{asset('images/us.png')}}"> English</a>
+                            <a class="dropdown-item" href="/ru"><img src="{{asset('images/ru.png')}}"> Russian</a>
+
+                        </div>
+					</li>
+				</ul>
+				</div>
+			</div>
+		</nav>
+ <main class="py-4">
+        @yield('content')
+    </main>
                     </div>
                     <img class="blin" id="img111" src="images/credo/Credo_2_png-removebg-preview.png", height="100px">
                 </div>
@@ -54,11 +100,10 @@
 
 				<div class="intro_inner">
 					<h1 class="intro_title">
-                        <strong>НАРУЖНАЯ РЕКЛАМА</strong>
+                        <strong>{{__('index.title')}}</strong>
                     </h1>
                     <p class="intro_subtitle">
-                        Мы предлагаем свои услуги по установке качественной и красочной наружной рекламы в Алматы!
-                        Для Вас объемные буквы, световые короба, вывески, таблички, штендеры, стеллы, баннера и много других рекламных приспособлений. 
+                    {{__('index.subtitle')}}
                     </p>
                 </div>
                 </div>
@@ -67,14 +112,19 @@
         
         <div class="popup">
          <div class="popup-content">
+         <form action = "/" method="POST"  enctype="multipart/form-data">
+
             <img onclick = "close_popup()" class = "x1" src="images/closed.png" width="5%">
             <img  src="images/Credo 33 png.png" width="40%" style="margin-top: 30px;margin-bottom: 30px;">
-            <p>Мы с вами свяжемся</p>
-            <input id="username" type="text" name="username" placeholder="Имя">
-            <input  id ="usernumber" type="text" name="num" placeholder="Номер телефона">
-            <input  id ="usermail" type="text" name="mail" placeholder="Почтовый адрес">
+            <p>{{__('index.connect')}}</p>
+            @csrf
+            <input id="username" type="text" name="username" placeholder={{__('index.place_name')}}>
+            <input  id ="usernumber" type="text" name="num" placeholder={{__('index.place_number')}}>
+            <input  id ="usermail" type="text" name="mail" placeholder={{__('index.place_mail')}}>
 
-            <button id = "question"  onclick = "close_popup()" class="btn btn-success" style="color: #fff;">Отправить заявку</button>
+            <button type="submit" id = "question"  onclick = "close_popup()" class="btn btn-success" style="color: #fff;">{{__('index.button_submit')}}</button>
+
+         </form>
           </div>
          </div>
      </div>
@@ -86,12 +136,12 @@
         <div class="about_us_main">
             <div class="about_us_content">
                 <div class="giff_au">
-                    <h2 id="about_us_text">Хотите развить свой бизнес?</h2>
+                    <h2 id="about_us_text">{{__('index.title_company')}}</h2>
                     <img src="https://images.bhaskarassets.com/web2images/521/2019/04/27/0521_desktop.gif"  width="80%">    
                 </div>
                 <div class="a_main_text1">
-                    <div class="text1">Вы можете связаться с нами прямо сейчас и получить  консультацию!</div> 
-                    <div onclick="popup()" class="botton_info" ><button type="button" class="btn btn-outline-info">Оставить заявку</button></div>
+                    <div class="text1">{{__('index.subtitle_company')}}</div> 
+                    <div onclick="popup()" class="botton_info" ><button type="button" class="btn btn-outline-info">{{__('index.button_feedback1')}}</button></div>
                 </div>
             </div>
 
@@ -101,27 +151,27 @@
             <div class="company" >
                 <div class = "box1">
                     <div class="box1_content">
-                        <h1>Улучшите свой бизнес вместе с нами!!!</h1>
+                        <h1>{{__('index.update_title')}}</h1>
                         <br>
-                        <p>Наша компания обладает всеми необходимыми ресурсами для создания качественной и эффективной наружной рекламы:</p>
+                        <p>{{__('index.update_subtitle')}}</p>
                     </div>
                 </div>
                 <div class = "box2">
                     <img id = "boximg2"src="images/one.png" height="95px">
                     <br>
                     <img id="master" src="images/master.png" height="130px">
-                    <p >профессиональная команда с большим опытом</p>
+                    <p >{{__('index.one')}}</p>
                 </div>
                 <div class = "box3">
                     <img id = "boximg3"src="images/two.png" width="100px">
                     <br>
                     <img id="structure" src="images/structure.png" height="150px">
-                    <p id="s_text">использование высококачественных материалов</p>
+                    <p id="s_text">{{__('index.two')}}</p>
                 </div>
                 <div class = "box4">
                     <img id = "boximg4"src="images/three.png" width="130px">
                     <img id="rocket" src="images/rocket.png" height="150px">
-                    <p id="r_text">скорость и индивидуальный подход к клиентам</p>
+                    <p id="r_text">{{__('index.there')}}</p>
                 </div>
             </div>
         </div>
@@ -134,7 +184,7 @@
         <br>
         <br>
         <div class="video-box">
-            <h3 class="posmotri_video">Посмотрите видео о том как мы работаем!</h3>
+            <h3 class="posmotri_video">{{__('index.title_video')}}</h3>
             <img class="phon" src="images/Times-Square-7.JPG" height="550px" width="100%">
 
             <div onclick="popup_video()" class="play-btn">
@@ -153,7 +203,7 @@
         <br>
         <br>
         <div class="uslugi">
-            <h2>Наши услуги</h2>
+            <h2>{{__('index.services')}}</h2>
         </div>
         <div id ="Services" class="company2">
             
@@ -162,9 +212,9 @@
                     <div class="gallery_item swiper-slide">
                         <img src="images/stroke2.png" alt="alt">
                         <div class="text">
-                            <h3 class="title">Бегущие строки</h3>
+                            <h3 class="title">{{__('index.c1_title')}}</h3>
                             <p>
-                                Бегущая строка — электронное устройство, предназначенное для отображения текстовой и графической информации. В самом простом варианте текст просто «бежит», двигаясь справа налево.
+                            {{__('index.c1_subtitle')}}
                             </p>
                         </div>
                     </div>
@@ -172,19 +222,18 @@
                     <div class="gallery_item swiper-slide">
                         <img src="images/mantana.png" alt="alt">
                         <div class="text">
-                            <h3 class="title">Вывески, крышные установки</h3>
+                            <h3 class="title">{{__('index.c2_title')}}</h3>
                             <p>
-                                Крышные установки – это рекламные конструкции, устанавливаемяш на крышу здания. Наиболее оптимально для установки крышной рекламы подходят здания, расположенные на самых значимых улицах, проспектах и магистралях.
-                            </p>
+                            {{__('index.c2_subtitle')}} </p>
                         </div>
                     </div>
         
                     <div class="gallery_item swiper-slide">
                         <img src="images/banner1.png" alt="alt">
                         <div class="text">
-                            <h3 class="title">Информационные стенды, баннеры.</h3>
+                            <h3 class="title">{{__('index.c3_title')}}</h3>
                             <p>
-                                Рекламные информационные стенды носят именно рекламных характер и направлены на воздействие на потенциальных потребителей. На таких стендах присутствует информация о компании, ее услугах и товарах, ее сотрудниках, о ценах.
+                            {{__('index.c3_subtitle')}}            
                             </p>
                         </div>
                     </div>
@@ -193,10 +242,9 @@
                     <div class="gallery_item swiper-slide">
                         <img src="images/cars.png" alt="alt">
                         <div class="text">
-                            <h3 class="title">Брендирование авто</h3>
+                            <h3 class="title">{{__('index.c4_title')}}</h3>
                             <p>
-                                Брендирование авто – легкий способ увеличить узнаваемость бренда!
-                                Один из самых распространенных и быстро развивающихся видов рекламы – это брендирование автотранспортных средств.                            
+                            {{__('index.c4_subtitle')}}                      
                             </p>
                         </div>
                     </div>
@@ -205,9 +253,9 @@
                     <div class="gallery_item swiper-slide">
                         <img src="images/kaz2.png" alt="alt">
                         <div class="text">
-                            <h3 class="title">Информационные стенды</h3>
+                            <h3 class="title">{{__('index.c5_title')}}</h3>
                             <p>
-                                Это одна из наших крупных школьных стендов длиной 24м.Использовались сертифицированные гос. символики, качественные материалы, такие как: ПВХ 3-5-8мм (повышенной плотности), акрил, орг стекло (для кармашек), качественная печать и плёнки.... 
+                            {{__('index.c5_subtitle')}}
                             </p>
                         </div>
                     </div>
@@ -215,9 +263,9 @@
                     <div class="gallery_item swiper-slide">
                         <img src="images/ramsey.png" alt="alt">
                         <div class="text">
-                            <h3 class="title">Световые буквы</h3>
+                            <h3 class="title">{{__('index.c6_title')}}</h3>
                             <p>
-                                Объемная световая буква – это рекламное изделие с внутренней подсветкой источниками света и состоящее из двух частей- основания и лицевой крышки, закрепленное на фасаде магазина, стене в офисе или с месте продаж
+                            {{__('index.c6_subtitle')}}
                             </p>
                         </div>
                     </div>
@@ -225,9 +273,9 @@
                     <div class="gallery_item swiper-slide">
                         <img src="images/litebox2.png" alt="alt">
                         <div class="text">
-                            <h3 class="title">Лайтбоксы</h3>
+                            <h3 class="title">{{__('index.c7_title')}}</h3>
                             <p>
-                                Световой бокс  — светотехническое изделие, которое представляет собой объемную конструкцию с лицевой поверхностью из транслюцентного материала , с боковинами и тыльной  поверхностью из металла или пластика ПВХ.
+                            {{__('index.c7_subtitle')}}
                             </p>
                         </div>
                     </div>
@@ -235,9 +283,9 @@
                     <div class="gallery_item swiper-slide">
                         <img src="images/zona.png" alt="alt">
                         <div class="text">
-                            <h3 class="title">Фотозоны</h3>
+                            <h3 class="title">{{__('index.c8_title')}}</h3>
                             <p>
-                                Правильный фон, соответствующий настроению и концепции праздника, в сочетании с умелыми действиями фотографа помогут получить по-настоящему впечатляющие фото на память.
+                            {{__('index.c8_subtitle')}}   
                             </p>
                         </div>
                     </div>
@@ -251,7 +299,7 @@
         
 
         <div class="btn_div">
-            <button onclick="displayFn()" id="Btn">Показать галерею</button>
+            <button onclick="displayFn()" id="Btn">&#8595;</button>
         </div>
         <div id="second_gallery">
             <div id="gallery_2">
@@ -286,39 +334,69 @@
         <br>
 
         <div class="about_work">
-            <h3>Прозрачная схема работы</h3>
+            <h3>{{__('index.scheme')}}</h3>
             <div class="container_about_work">
                 <div class="process1">
                     <img src="images/call.png" width="95%">
-                    <p>Обработка заявки</p>
+                    <p>{{__('index.scheme_1')}}</p>
                 </div>
                 <div class="process2">
                     <img src="images/develop.png" width="95%">
-                    <p>Разработка проекта</p>
+                    <p>{{__('index.scheme_2')}}</p>
                 </div>
                 <div class="process3">
                     <img src="images/cost.png" width="95%">
-                    <p>Расчет стоимости</p>
+                    <p>{{__('index.scheme_3')}}</p>
                 </div>
                 <div class="process4">
                     <img src="images/bilbord.png" width="95%">
-                    <p>Производство вывески </p>
+                    <p>{{__('index.scheme_4')}}</p>
                 </div>
                 <div class="process5">
                     <img src="images/pay.png" width="95%">
-                    <p>Оплата заказа</p>
+                    <p>{{__('index.scheme_5')}}</p>
                 </div>
                 <div class="process6">
                     <img src="images/download.png" width="95%">
-                    <p>Доставка и установка</p>
+                    <p>{{__('index.scheme_6')}}</p>
                 </div>
             </div>
+        </div>
+        <div class="feedback">
+            <center>
+                <form action = "/question" method="POST"  enctype="multipart/form-data">
+                    <fieldset>
+                        <legend align="center"><h3>{{__('index.Leave messages')}}</h3> </legend>
+                        <table>
+                            @csrf
+                            <tr>
+                                <td><label for = ""><h5>{{__('index.enter_name')}}</h5></label></td>
+                                <td><input type = "text" placeholder = {{__('index.place_name')}} style="color: #000;" name="name"></td>
+                            </tr>
+                            <tr>
+                                <td><label for = ""><h5>{{__('index.e_email')}}</h5></label></td>
+                                <td><input type = "text" placeholder = {{__('index.place_mail')}} style="color: #000;" name="email"></td>
+                            </tr>
+                            <tr>
+                                <td><label for = ""><h5>{{__('index.e_message')}}</h5> </label></td>
+                                <td><textarea type = "text" placeholder = {{__('index.place_message')}} cols="50" rows="7" style="color: #000; margin-left: 125px" name="question"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><label for = ""><h5>{{__('index.e_image')}}</h5> </label></td>
+                                <td><input type="file" name="file"></td>
+                            </tr>
+                        </table>
+                        <button type="submit" id = "question"  onclick = "" class="btn btn-outline-success" >{{__('index.submit_just')}}</button>
+                    </fieldset>
+    
+                </form>
+            </center>
         </div>
         <br>
         <br>
         <br>
         <h3 id="cont">
-            Вы можете найти нас здесь!
+        {{__('index.find')}}
         </h3>
         <div class="footer">
             
@@ -338,7 +416,7 @@
                 </div>
                 <div class="ad">
                     <a href="https://www.google.com/maps/place/Credo+Almaty/@43.224396,76.829279,17z/data=!4m5!3m4!1s0x0:0x10a246d84562fa65!8m2!3d43.224396!4d76.8292794?hl=ru"><img class="ad_img" src="location.png" width="8%"></a>
-                    <a href="https://www.google.com/maps/place/Credo+Almaty/@43.224396,76.829279,17z/data=!4m5!3m4!1s0x0:0x10a246d84562fa65!8m2!3d43.224396!4d76.8292794?hl=ru"><p class = "p4w" id="block1"><i class="fas fa-map-marker-alt"></i> Адрес:  <strong>Ш.Кажыгалиева 22</strong></p></a>
+                    <a href="https://www.google.com/maps/place/Credo+Almaty/@43.224396,76.829279,17z/data=!4m5!3m4!1s0x0:0x10a246d84562fa65!8m2!3d43.224396!4d76.8292794?hl=ru"><p class = "p4w" id="block1"><i class="fas fa-map-marker-alt"></i>   <strong>{{__('index.address')}}</strong></p></a>
                 </div>
             </div>
            
@@ -358,5 +436,7 @@
         <script type="text/javascript"  src="js/main.js ">
         </script>
         </div>
+        
+       
     </body>
 </html>
